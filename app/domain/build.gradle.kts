@@ -1,22 +1,19 @@
 plugins {
+    alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsKotlin)
-    alias(libs.plugins.androidApplication)
     alias(libs.plugins.kapt)
     alias(libs.plugins.daggerHilt)
 }
 
 android {
-    namespace = "com.example.movieapp"
+    namespace = "com.example.domain"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.movieapp"
         minSdk = 26
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -36,10 +33,9 @@ android {
 
 dependencies {
 
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.androidx.constraintlayout)
-    implementation(libs.androidx.material)
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.test.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
     implementation(libs.daggerHiltAndroid)
     kapt(libs.daggerHiltCompiler)
 }
