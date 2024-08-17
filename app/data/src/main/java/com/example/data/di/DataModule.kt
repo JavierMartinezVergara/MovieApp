@@ -1,5 +1,6 @@
 package com.example.data.di
 
+import com.example.data.BuildConfig
 import com.example.data.service.AuthInterceptor
 import com.example.data.service.MovieService
 import com.example.data.utils.Constants
@@ -44,7 +45,7 @@ class DataModule {
             .build()
 
     @Provides
-    fun provideAuthInterceptor(): AuthInterceptor = AuthInterceptor(Constants.ACCESS_TOKEN)
+    fun provideAuthInterceptor(): AuthInterceptor = AuthInterceptor(BuildConfig.MOVIE_API_KEY)
 
     @Provides
     fun provideRetrofit(): Retrofit =

@@ -38,4 +38,5 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
     implementation(libs.daggerHiltAndroid)
     kapt(libs.daggerHiltCompiler)
+    implementation(project(":app:data"))
 }
