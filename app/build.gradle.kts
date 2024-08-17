@@ -32,6 +32,9 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
@@ -41,6 +44,11 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.material)
     implementation(libs.daggerHiltAndroid)
-    kapt(libs.daggerHiltCompiler)
     implementation(project(":app:data"))
+    kapt(libs.daggerHiltCompiler)
+    implementation(libs.lifecycle)
+    kapt(libs.lifecycleKapt)
+
+    implementation(libs.androidx.activity)
+    implementation(project(":app:domain"))
 }

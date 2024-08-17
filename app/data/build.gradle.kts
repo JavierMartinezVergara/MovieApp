@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsKotlin)
@@ -14,6 +16,21 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
+
+        val keyStoreFile = project.rootProject.file("keys.properties")
+        val properties = Properties()
+        properties.load(keyStoreFile.inputStream())
+
+        val apiKey = properties.getProperty("MOVIE_API_KEY") ?: ""
+        buildConfigField(
+            type = "String",
+            name = "MOVIE_API_KEY",
+            value = apiKey,
+        )
+    }
+
+    buildFeatures {
+        buildConfig = true
     }
 
     buildTypes {

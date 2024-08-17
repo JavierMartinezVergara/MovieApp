@@ -22,6 +22,8 @@ kotlin-coroutines = "1.6.4"
 retrofit = "2.9.0"
 interceptor = "4.11.0"
 gson = "2.10.1"
+lifecycle = "2.8.4"
+activity = "1.9.1"
 
 
 [libraries]
@@ -34,6 +36,8 @@ androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-co
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "androidx-appcompat" }
 androidx-material = { group = "com.google.android.material", name = "material", version.ref = "androidx-material" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "androidx-constraintlayout" }
+androidx-activity = { group = "androidx.activity", name = "activity-ktx", version.ref = "activity" }
+androidx-activityCore = { group = "androidx.activity", name = "activity-core", version.ref = "activity" }
 
 daggerHiltAndroid = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
 daggerHiltCompiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt" }
@@ -47,6 +51,10 @@ retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = 
 retrofitGson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit" }
 interceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "interceptor" }
 gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
+
+lifecycle = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
+lifecycleKapt = { group = "androidx.lifecycle", name = "lifecycle-compiler", version.ref = "lifecycle" }
+lifecycleViewModel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-savedstate", version.ref = "lifecycle" }
 
 
 coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "kotlin-coroutines" }
