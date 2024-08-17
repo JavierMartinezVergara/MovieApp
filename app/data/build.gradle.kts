@@ -38,4 +38,14 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
     implementation(libs.daggerHiltAndroid)
     kapt(libs.daggerHiltCompiler)
+
+    implementation(libs.retrofit)
+    implementation(libs.retrofitGson)
+    implementation(libs.gson)
+    implementation(libs.interceptor)
+
+    implementation(libs.coroutines)
+
+    implementation(libs.roomRuntime)
+    kapt(libs.roomCompile)
 }

@@ -42,4 +42,5 @@ dependencies {
     implementation(libs.androidx.material)
     implementation(libs.daggerHiltAndroid)
     kapt(libs.daggerHiltCompiler)
+    implementation(project(":app:data"))
 }
