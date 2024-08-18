@@ -1,4 +1,4 @@
-package com.example.movieapp.presentation.ui
+package com.example.movieapp.presentation.ui.popular
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -16,8 +16,8 @@ import com.example.movieapp.databinding.FragmentPopularMoviesBinding
 import com.example.movieapp.presentation.model.ViewStateMovies.ErrorStateMovies
 import com.example.movieapp.presentation.model.ViewStateMovies.LoadingStateMovies
 import com.example.movieapp.presentation.model.ViewStateMovies.SuccessStateMovies
+import com.example.movieapp.presentation.ui.MoviesGridAdapter
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -42,9 +42,10 @@ class PopularMoviesFragment : Fragment() {
         view: View,
         savedInstanceState: Bundle?,
     ) {
+        movieViewModel.fetchMovies()
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                movieViewModel.viewState.collectLatest { viewState ->
+                movieViewModel.uiState.collect { viewState ->
                     when (viewState) {
                         is ErrorStateMovies -> print(view)
                         LoadingStateMovies -> print(view)

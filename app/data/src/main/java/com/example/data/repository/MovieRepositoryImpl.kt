@@ -27,4 +27,16 @@ class MovieRepositoryImpl
             }.catch {
                 emit(ResultState.Error(it.message.toString()))
             }.flowOn(Dispatchers.IO)
+
+        override suspend fun fetchNowPlayingMovies(): Flow<ResultState<ResponseMovies>> =
+            flow {
+                try {
+                    val result = apiService.getNowPlayingMovies()
+                    emit(ResultState.Success(result))
+                } catch (e: IOException) {
+                    emit(ResultState.Error(e.message.toString()))
+                }
+            }.catch {
+                emit(ResultState.Error(it.message.toString()))
+            }.flowOn(Dispatchers.IO)
     }

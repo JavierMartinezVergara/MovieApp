@@ -17,3 +17,4 @@ rootProject.name = "MovieApp"
 include(":app")
 include(":app:data")
 include(":app:domain")
+include(":preferences")

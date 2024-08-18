@@ -3,4 +3,7 @@
   <string name="title_domain">domain</string>
   <!-- TODO: Remove or change this placeholder text -->
   <string name="hello_blank_fragment">Hello blank fragment</string>
+  <string name="title_popular">Popular</string>
+  <string name="title_now">Now Playing\n</string>
+  <string name="title_favs">Favorites</string>
 </resources>

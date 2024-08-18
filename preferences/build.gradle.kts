@@ -3,18 +3,16 @@ plugins {
     alias(libs.plugins.jetbrainsKotlin)
     alias(libs.plugins.kapt)
     alias(libs.plugins.daggerHilt)
-    id("kotlin-parcelize")
 }
 
 android {
-    namespace = "com.example.domain"
+    namespace = "com.example.preferences"
     compileSdk = 34
 
     defaultConfig {
         minSdk = 26
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -33,11 +31,9 @@ android {
 }
 
 dependencies {
-
     testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.test.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
     implementation(libs.daggerHiltAndroid)
     kapt(libs.daggerHiltCompiler)
-    implementation(project(":app:data"))
+    androidTestImplementation(libs.androidx.test.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
 }
