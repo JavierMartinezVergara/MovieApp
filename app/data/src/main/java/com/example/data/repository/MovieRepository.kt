@@ -6,4 +6,6 @@ import kotlinx.coroutines.flow.Flow
 
 interface MovieRepository {
     suspend fun fetchMovies(): Flow<ResultState<ResponseMovies>>
+
+    suspend fun fetchNowPlayingMovies(): Flow<ResultState<ResponseMovies>>
 }
