@@ -1,0 +1,23 @@
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/popularMovies">
+
+  <fragment
+      android:id="@+id/popularMovies"
+      android:name="com.example.movieapp.presentation.ui.PopularMoviesFragment"
+      android:label="Popular Movies">
+
+    <!-- Action to navigate from Profile to Friends List. -->
+    <action
+        android:id="@+id/action_pupular_to_detail"
+        app:destination="@id/detailMovie" />
+  </fragment>
+
+  <fragment
+      android:id="@+id/detailMovie"
+      android:name="com.example.movieapp.presentation.ui.DetailMovieFragment"
+      android:label="Detail Movie" />
+
+  <!-- Add other fragment destinations similarly. -->
+</navigation>

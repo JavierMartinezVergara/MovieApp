@@ -8,6 +8,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
+import java.io.IOException
 import javax.inject.Inject
 
 class MovieRepositoryImpl
@@ -17,8 +18,12 @@ class MovieRepositoryImpl
     ) : MovieRepository {
         override suspend fun fetchMovies(): Flow<ResultState<ResponseMovies>> =
             flow {
-                val result = apiService.getPopularMovies()
-                emit(result)
+                try {
+                    val result = apiService.getPopularMovies()
+                    emit(ResultState.Success(result))
+                } catch (e: IOException) {
+                    emit(ResultState.Error(e.message.toString()))
+                }
             }.catch {
                 emit(ResultState.Error(it.message.toString()))
             }.flowOn(Dispatchers.IO)
