@@ -1,7 +1,6 @@
 package com.example.data.service
 
 import com.example.data.model.ResponseMovies
-import com.example.data.model.ResultState
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -13,5 +12,5 @@ interface MovieService {
         @Query("language") language: String = "es-US",
         @Query("page") page: Int = 1,
         @Query("sort_by") sortBy: String = "popularity.desc",
-    ): ResultState<ResponseMovies>
+    ): ResponseMovies
 }

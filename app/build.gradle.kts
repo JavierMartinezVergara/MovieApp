@@ -49,6 +49,15 @@ dependencies {
     implementation(libs.lifecycle)
     kapt(libs.lifecycleKapt)
 
+    implementation(libs.androidx.fragment)
+    implementation(libs.androidx.navigationFragment)
+    implementation(libs.androidx.navigationRuntime)
+    implementation(libs.androidx.navigationUi)
+
+    implementation(libs.coil)
+
+    implementation(libs.glide)
+
     implementation(libs.androidx.activity)
     implementation(project(":app:domain"))
 }

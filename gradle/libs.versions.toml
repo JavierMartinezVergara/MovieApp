@@ -24,6 +24,10 @@ interceptor = "4.11.0"
 gson = "2.10.1"
 lifecycle = "2.8.4"
 activity = "1.9.1"
+navigationKtx = "2.7.7"
+fragmentKtx = "1.8.2"
+coil = "2.5.0"
+glide = "4.11.0"
 
 
 [libraries]
@@ -38,6 +42,16 @@ androidx-material = { group = "com.google.android.material", name = "material", 
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "androidx-constraintlayout" }
 androidx-activity = { group = "androidx.activity", name = "activity-ktx", version.ref = "activity" }
 androidx-activityCore = { group = "androidx.activity", name = "activity-core", version.ref = "activity" }
+
+androidx-fragment = { group = "androidx.fragment", name = "fragment-ktx", version.ref = "fragmentKtx" }
+
+androidx-navigationRuntime = { group = "androidx.navigation", name = "navigation-runtime-ktx", version.ref = "navigationKtx" }
+androidx-navigationFragment = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigationKtx" }
+androidx-navigationUi = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigationKtx" }
+
+coil = { group = "io.coil-kt", name = "coil", version.ref = "coil" }
+
+glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "glide" }
 
 daggerHiltAndroid = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
 daggerHiltCompiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt" }
