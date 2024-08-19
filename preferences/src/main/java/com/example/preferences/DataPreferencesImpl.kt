@@ -30,7 +30,7 @@ class DataPreferencesImpl
             preferences.data.map { preference ->
                 RefreshToken(
                     token = preference[REFRESH_TOKEN] ?: "",
-                    expireDate = preference[EXPIRE_DATE] ?: "",
+                    expireDate = preference[EXPIRE_DATE] ?: "2024-08-17 12:28:37 UTC",
                 )
             }
 

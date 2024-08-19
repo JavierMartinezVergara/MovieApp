@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -12,7 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.domain.model.MovieEntity
+import com.example.domain.domain.model.MovieEntity
 import com.example.movieapp.databinding.FragmentNowPlayingMoviesBinding
 import com.example.movieapp.presentation.model.ViewStateMovies.ErrorStateMovies
 import com.example.movieapp.presentation.model.ViewStateMovies.LoadingStateMovies
@@ -30,14 +29,6 @@ class NowPlayingMoviesFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        activity?.onBackPressedDispatcher?.addCallback(
-            this,
-            object : OnBackPressedCallback(true) {
-                override fun handleOnBackPressed() {
-                    findNavController().popBackStack()
-                }
-            },
-        )
     }
 
     override fun onCreateView(
@@ -84,7 +75,7 @@ class NowPlayingMoviesFragment : Fragment() {
     }
 
     private fun onItemList(movieEntity: MovieEntity) {
-        val action = NowPlayingMoviesFragmentDirections.actionPopularToDetail(movieEntity)
+        val action = NowPlayingMoviesFragmentDirections.actionNowPlayingToDetail(movieEntity)
         findNavController().navigate(action)
     }
 }
