@@ -34,6 +34,9 @@ dependencies {
     testImplementation(libs.junit)
     implementation(libs.daggerHiltAndroid)
     kapt(libs.daggerHiltCompiler)
+
+    implementation(libs.datastore)
+    implementation(libs.coroutines)
     androidTestImplementation(libs.androidx.test.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 }
