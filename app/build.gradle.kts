@@ -45,7 +45,6 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.material)
     implementation(libs.daggerHiltAndroid)
-    implementation(project(":app:data"))
     kapt(libs.daggerHiltCompiler)
     implementation(libs.lifecycle)
     kapt(libs.lifecycleKapt)
@@ -60,5 +59,6 @@ dependencies {
     implementation(libs.glide)
 
     implementation(libs.androidx.activity)
-    implementation(project(":app:domain"))
+    implementation(project(":domain"))
+    implementation(project(":data"))
 }

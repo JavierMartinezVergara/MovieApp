@@ -21,7 +21,6 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val navView: BottomNavigationView = binding.navView
         // Find the NavController
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
@@ -31,7 +30,22 @@ class MainActivity : AppCompatActivity() {
         // Set up Bottom Navigation Bar with NavController
         binding.navView.setupWithNavController(navController)
         // Enhance user experience by clearing the back stack
-        bottomNavItemChangeListener(navView)
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.popular ->
+                    binding.navView.menu
+                        .findItem(R.id.popular)
+                        .isChecked = true
+                R.id.nowPlaying ->
+                    binding.navView.menu
+                        .findItem(R.id.nowPlaying)
+                        .isChecked = true
+                R.id.favorites ->
+                    binding.navView.menu
+                        .findItem(R.id.favorites)
+                        .isChecked = true
+            }
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean = navController.navigateUp() || super.onSupportNavigateUp()

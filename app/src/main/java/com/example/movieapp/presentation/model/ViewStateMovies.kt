@@ -1,6 +1,6 @@
 package com.example.movieapp.presentation.model
 
-import com.example.domain.model.MovieEntity
+import com.example.domain.domain.model.MovieEntity
 
 sealed class ViewStateMovies {
     data object LoadingStateMovies : ViewStateMovies()
