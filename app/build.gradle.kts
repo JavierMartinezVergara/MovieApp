@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.kapt)
     alias(libs.plugins.daggerHilt)
+    id("androidx.navigation.safeargs")
 }
 
 android {

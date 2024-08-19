@@ -13,7 +13,9 @@ import com.example.movieapp.databinding.MovieGridBinding
 import com.example.movieapp.presentation.ui.MoviesGridAdapter.ViewHolder
 import com.example.movieapp.presentation.util.Constans
 
-class MoviesGridAdapter : ListAdapter<MovieEntity, ViewHolder>(TaskDiffCallBack()) {
+class MoviesGridAdapter(
+    private val onItemClick: (MovieEntity) -> Unit,
+) : ListAdapter<MovieEntity, ViewHolder>(TaskDiffCallBack()) {
     private lateinit var binding: MovieGridBinding
 
     class TaskDiffCallBack : DiffUtil.ItemCallback<MovieEntity>() {
@@ -48,6 +50,9 @@ class MoviesGridAdapter : ListAdapter<MovieEntity, ViewHolder>(TaskDiffCallBack(
         private var binding: MovieGridBinding,
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(movie: MovieEntity) {
+            binding.root.setOnClickListener {
+                onItemClick(movie)
+            }
             binding.titleMovie.text = movie.name
             Glide
                 .with(binding.root.context)

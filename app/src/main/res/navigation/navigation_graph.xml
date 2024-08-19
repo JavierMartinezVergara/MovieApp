@@ -10,7 +10,12 @@
 
     <action
         android:id="@+id/action_popular_to_detail"
-        app:destination="@id/detailMovie" />
+        app:destination="@id/navigation"
+        >
+      <argument
+          android:name="movieArgument"
+          app:argType="com.example.domain.model.MovieEntity" />
+    </action>
   </fragment>
   <fragment
       android:id="@+id/nowPlaying"
@@ -18,8 +23,13 @@
       android:label="Now Playing Movies">
 
     <action
-        android:id="@+id/action_now_playing_to_detail"
-        app:destination="@id/detailMovie" />
+        android:id="@+id/action_popular_to_detail"
+        app:destination="@id/navigation"
+        >
+      <argument
+          android:name="movieArgument"
+          app:argType="com.example.domain.model.MovieEntity" />
+    </action>
   </fragment>
   <fragment
       android:id="@+id/favorites"
@@ -27,13 +37,26 @@
       android:label="Favorites Movies">
 
     <action
-        android:id="@+id/action_now_playing_to_detail"
-        app:destination="@id/detailMovie" />
+        android:id="@+id/action_popular_to_detail"
+        app:destination="@id/navigation"
+        >
+      <argument
+          android:name="movieArgument"
+          app:argType="com.example.domain.model.MovieEntity" />
+    </action>
   </fragment>
 
-  <fragment
-      android:id="@+id/detailMovie"
-      android:name="com.example.movieapp.presentation.ui.detail.DetailMovieFragment"
-      android:label="Detail Movie" />
+  <navigation
+      android:id="@+id/navigation"
+      app:startDestination="@id/detailMovie">
+    <fragment
+        android:id="@+id/detailMovie"
+        android:name="com.example.movieapp.presentation.ui.detail.DetailMovieFragment"
+        android:label="Detail Movie">
+      <argument
+          android:name="movieArgument"
+          app:argType="com.example.domain.model.MovieEntity" />
+    </fragment>
+  </navigation>
 
 </navigation>

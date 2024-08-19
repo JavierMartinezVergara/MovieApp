@@ -28,6 +28,7 @@ navigationKtx = "2.7.7"
 fragmentKtx = "1.8.2"
 coil = "2.5.0"
 glide = "4.11.0"
+data_store = "1.1.1"
 
 
 [libraries]
@@ -70,6 +71,8 @@ lifecycle = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", ve
 lifecycleKapt = { group = "androidx.lifecycle", name = "lifecycle-compiler", version.ref = "lifecycle" }
 lifecycleViewModel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-savedstate", version.ref = "lifecycle" }
 
+datastore = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "data_store" }
+
 
 coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "kotlin-coroutines" }
 
@@ -85,3 +88,4 @@ compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "
 androidDynamicFeature = { id = "com.android.dynamic-feature", version.ref = "agp" }
 daggerHilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
+navigationSaveArgs = { id = "androidx.navigation.safeargs.kotlin", version.ref = "navigationKtx" }
