@@ -68,7 +68,7 @@ class DetailMovieFragment : Fragment() {
         binding.descriptionMovie.text = movieFragmentArgs.movieArgument.overview
         binding.chip1.text = movieFragmentArgs.movieArgument.popularity.toString()
         binding.addFavorite.setOnClickListener {
-            movieViewModel.addFavoriteMovie(movieFragmentArgs.movieArgument.id)
+            movieFragmentArgs.movieArgument.id?.let { it1 -> movieViewModel.addFavoriteMovie(it1) }
         }
         (activity as MainActivity).binding.navView.visibility = View.GONE
 
@@ -79,7 +79,6 @@ class DetailMovieFragment : Fragment() {
                         is AddFavoriteMovieState.ErrorStateMovies -> {
                             showSnackbar(view, viewState.error)
                         }
-
                         LoadingState -> print(viewState)
                         is AddFavoriteMovieState.SuccessStateMovies -> {
                             showSnackbar(view, "Añadido a favoritos")
@@ -95,7 +94,7 @@ class DetailMovieFragment : Fragment() {
         text: String,
     ) {
         Snackbar
-            .make(view, "Añadido a Favoritos", Snackbar.LENGTH_LONG)
+            .make(view, text, Snackbar.LENGTH_LONG)
             .setAction("Action", null)
             .setAnimationMode(ANIMATION_MODE_FADE)
             .setTextColor(requireContext().getColor(color.white))

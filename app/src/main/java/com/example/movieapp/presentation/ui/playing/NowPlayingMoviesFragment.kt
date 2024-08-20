@@ -10,16 +10,15 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import androidx.paging.PagingData
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.domain.domain.model.MovieEntity
 import com.example.movieapp.databinding.FragmentNowPlayingMoviesBinding
-import com.example.movieapp.presentation.model.ViewStateMovies.ErrorStateMovies
-import com.example.movieapp.presentation.model.ViewStateMovies.LoadingStateMovies
-import com.example.movieapp.presentation.model.ViewStateMovies.SuccessStateMovies
 import com.example.movieapp.presentation.ui.MainActivity
 import com.example.movieapp.presentation.ui.MoviesGridAdapter
 import com.example.movieapp.presentation.ui.popular.MovieViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -48,18 +47,14 @@ class NowPlayingMoviesFragment : Fragment() {
         movieViewModel.fetchNowPlayingMovies()
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                movieViewModel.nowPlayingMoviesState.collect { viewState ->
-                    when (viewState) {
-                        is ErrorStateMovies -> print(view)
-                        LoadingStateMovies -> print(view)
-                        is SuccessStateMovies -> setAdapter(viewState.data)
-                    }
+                movieViewModel.nowPlayingMoviesState.collectLatest { movies ->
+                    setAdapter(movies)
                 }
             }
         }
     }
 
-    private fun setAdapter(movies: List<MovieEntity>) {
+    private suspend fun setAdapter(movies: PagingData<MovieEntity>) {
         val movieAdapter =
             MoviesGridAdapter {
                 onItemList(it)
@@ -71,7 +66,7 @@ class NowPlayingMoviesFragment : Fragment() {
                 setHasFixedSize(true)
             }
         }
-        movieAdapter.submitList(movies)
+        movieAdapter.submitData(movies)
     }
 
     private fun onItemList(movieEntity: MovieEntity) {

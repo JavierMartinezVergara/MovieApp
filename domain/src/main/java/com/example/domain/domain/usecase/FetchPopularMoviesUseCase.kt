@@ -1,11 +1,10 @@
 package com.example.domain.domain.usecase
 
+import androidx.paging.PagingData
+import androidx.paging.map
 import com.example.domain.domain.mappers.toMovieEntity
 import com.example.domain.domain.model.MovieEntity
-import com.example.model.response.ResultState
-import com.example.model.response.ResultState.Error
-import com.example.model.response.ResultState.Success
-import com.example.repository.MovieRepository
+import com.example.pagination.MoviesDataSourcePagination
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
@@ -13,15 +12,12 @@ import javax.inject.Inject
 class FetchPopularMoviesUseCase
     @Inject
     constructor(
-        private val repository: MovieRepository,
+        private val repository: MoviesDataSourcePagination,
     ) {
-        suspend operator fun invoke(): Flow<ResultState<List<MovieEntity>>> =
-            repository.fetchMovies().map {
-                when (it) {
-                    is Error -> Error(it.error)
-                    is Success -> {
-                        Success(it.data.results.toMovieEntity())
-                    }
+        operator fun invoke(): Flow<PagingData<MovieEntity>> =
+            repository.getPopularMovies().map { paging ->
+                paging.map {
+                    it.toMovieEntity()
                 }
             }
     }

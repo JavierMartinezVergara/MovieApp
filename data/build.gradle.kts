@@ -84,6 +84,6 @@ dependencies {
 
     implementation(libs.coroutines)
 
-    implementation(libs.roomRuntime)
+    implementation(libs.pagination)
     implementation(project(":preferences"))
 }

@@ -32,7 +32,8 @@ android {
 }
 
 dependencies {
-    testImplementation(libs.junit)
+    implementation(libs.androidx.paging.common.android)
+  testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     implementation(libs.daggerHiltAndroid)

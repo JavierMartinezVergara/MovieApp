@@ -2,8 +2,8 @@ package com.example.movieapp.presentation.ui
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
@@ -15,7 +15,7 @@ import com.example.movieapp.presentation.util.Constans
 
 class MoviesGridAdapter(
     private val onItemClick: (MovieEntity) -> Unit,
-) : ListAdapter<MovieEntity, ViewHolder>(TaskDiffCallBack()) {
+) : PagingDataAdapter<MovieEntity, ViewHolder>(TaskDiffCallBack()) {
     private lateinit var binding: MovieGridBinding
 
     class TaskDiffCallBack : DiffUtil.ItemCallback<MovieEntity>() {
@@ -43,7 +43,7 @@ class MoviesGridAdapter(
         position: Int,
     ) {
         val movie = getItem(position)
-        holder.bind(movie)
+        movie?.let { holder.bind(it) }
     }
 
     inner class ViewHolder(
