@@ -6,6 +6,7 @@ import com.example.domain.domain.usecase.FetchFavoriteMoviesUseCase
 import com.example.domain.domain.usecase.FetchNowplayingMoviesUseCase
 import com.example.domain.domain.usecase.FetchPopularMoviesUseCase
 import com.example.domain.domain.usecase.UseCases
+import com.example.pagination.MoviesDataSourcePagination
 import com.example.repository.AuthRepository
 import com.example.repository.MovieRepository
 import com.example.repository.PreferencesRepository
@@ -21,14 +22,15 @@ object Modules {
     @Provides
     @Singleton
     fun provideUseCases(
+        movieDataSource: MoviesDataSourcePagination,
         movieRepository: MovieRepository,
         authRepository: AuthRepository,
         preferencesRepository: PreferencesRepository,
     ): UseCases =
         UseCases(
-            fetchPopularMovies = FetchPopularMoviesUseCase(movieRepository),
-            fetchNowplayingMoviesUseCase = FetchNowplayingMoviesUseCase(movieRepository),
-            fetchFavoriteMoviesUseCase = FetchFavoriteMoviesUseCase(movieRepository),
+            fetchPopularMovies = FetchPopularMoviesUseCase(movieDataSource),
+            fetchNowplayingMoviesUseCase = FetchNowplayingMoviesUseCase(movieDataSource),
+            fetchFavoriteMoviesUseCase = FetchFavoriteMoviesUseCase(movieDataSource),
             refreshTokenUseCase = CreateRefreshTokenUseCase(authRepository, preferencesRepository),
             addFavoriteMoviesUseCase =
                 AddFavoriteUseCase(

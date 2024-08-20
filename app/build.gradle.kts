@@ -45,6 +45,7 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.material)
     implementation(libs.daggerHiltAndroid)
+    implementation(libs.pagination)
     kapt(libs.daggerHiltCompiler)
     implementation(libs.lifecycle)
     kapt(libs.lifecycleKapt)

@@ -1,5 +1,7 @@
 package com.example.di
 
+import com.example.pagination.MoviesDataSourcePagination
+import com.example.pagination.MoviesDataSourcePaginationImpl
 import com.example.repository.AuthRepository
 import com.example.repository.AuthRepositoryImpl
 import com.example.repository.MovieRepository
@@ -22,4 +24,7 @@ abstract class BindsModule {
 
     @Binds
     abstract fun bindsAuthRepository(impl: AuthRepositoryImpl): AuthRepository
+
+    @Binds
+    abstract fun bindsMovieDataSource(impl: MoviesDataSourcePaginationImpl): MoviesDataSourcePagination
 }

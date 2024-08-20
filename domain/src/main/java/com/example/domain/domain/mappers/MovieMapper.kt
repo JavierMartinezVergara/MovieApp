@@ -16,3 +16,15 @@ fun List<Movie>.toMovieEntity(): List<MovieEntity> =
             voteAverage = movie.vote_count,
         )
     }
+
+fun Movie.toMovieEntity() =
+    MovieEntity(
+        id = this.id,
+        name = this.title,
+        overview = this.overview,
+        popularity = this.popularity,
+        poster = this.poster_path,
+        releaseDate = this.release_date,
+        language = this.original_language,
+        voteAverage = this.vote_count,
+    )

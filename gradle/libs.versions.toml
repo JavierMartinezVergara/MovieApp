@@ -29,6 +29,7 @@ fragmentKtx = "1.8.2"
 coil = "2.5.0"
 glide = "4.11.0"
 data_store = "1.1.1"
+pagination = "3.3.2"
 
 
 [libraries]
@@ -78,6 +79,8 @@ coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-andro
 
 annotation = { group = "androidx.annotation", name = "annotation", version.ref = "annotation" }
 
+pagination = { group = "androidx.paging", name = "paging-runtime-ktx", version.ref = "pagination" }
+androidx-paging-common-android = { group = "androidx.paging", name = "paging-common-android", version.ref = "pagination" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

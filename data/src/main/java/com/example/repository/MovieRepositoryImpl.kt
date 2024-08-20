@@ -18,41 +18,29 @@ class MovieRepositoryImpl
     constructor(
         private val apiService: MovieService,
     ) : MovieRepository {
-        override suspend fun fetchMovies(): Flow<ResultState<ResponseMovies>> =
-            flow {
-                try {
-                    val result = apiService.getPopularMovies()
-                    emit(ResultState.Success(result))
-                } catch (e: IOException) {
-                    emit(ResultState.Error(e.message.toString()))
-                }
-            }.catch {
-                emit(ResultState.Error(it.message.toString()))
-            }.flowOn(Dispatchers.IO)
+        override suspend fun fetchPopularMovies(page: Int): ResultState<ResponseMovies> =
+            try {
+                val result = apiService.getPopularMovies(page = page)
+                ResultState.Success(result)
+            } catch (e: IOException) {
+                ResultState.Error(e.message.toString())
+            }
 
-        override suspend fun fetchNowPlayingMovies(): Flow<ResultState<ResponseMovies>> =
-            flow {
-                try {
-                    val result = apiService.getNowPlayingMovies()
-                    emit(ResultState.Success(result))
-                } catch (e: IOException) {
-                    emit(ResultState.Error(e.message.toString()))
-                }
-            }.catch {
-                emit(ResultState.Error(it.message.toString()))
-            }.flowOn(Dispatchers.IO)
+        override suspend fun fetchNowPlayingMovies(page: Int): ResultState<ResponseMovies> =
+            try {
+                val result = apiService.getNowPlayingMovies(page = page)
+                ResultState.Success(result)
+            } catch (e: IOException) {
+                ResultState.Error(e.message.toString())
+            }
 
-        override suspend fun fetchFavoriteMovies(): Flow<ResultState<ResponseMovies>> =
-            flow {
-                try {
-                    val result = apiService.getFavoriteMovies()
-                    emit(ResultState.Success(result))
-                } catch (e: IOException) {
-                    emit(ResultState.Error(e.message.toString()))
-                }
-            }.catch {
-                emit(ResultState.Error(it.message.toString()))
-            }.flowOn(Dispatchers.IO)
+        override suspend fun fetchFavoriteMovies(page: Int): ResultState<ResponseMovies> =
+            try {
+                val result = apiService.getFavoriteMovies(page = page)
+                ResultState.Success(result)
+            } catch (e: IOException) {
+                ResultState.Error(e.message.toString())
+            }
 
         override suspend fun addFavoriteMovie(requestAddMovie: RequestAddMovie): Flow<ResultState<ResponseAddMovie>> =
             flow {

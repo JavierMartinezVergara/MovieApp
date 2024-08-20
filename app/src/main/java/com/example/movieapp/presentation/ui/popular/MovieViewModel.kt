@@ -2,15 +2,15 @@ package com.example.movieapp.presentation.ui.popular
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
+import com.example.domain.domain.model.MovieEntity
 import com.example.domain.domain.usecase.AddFavoriteUseCase
 import com.example.domain.domain.usecase.FetchFavoriteMoviesUseCase
 import com.example.domain.domain.usecase.FetchNowplayingMoviesUseCase
 import com.example.domain.domain.usecase.FetchPopularMoviesUseCase
 import com.example.model.response.ResultState
 import com.example.movieapp.presentation.model.AddFavoriteMovieState
-import com.example.movieapp.presentation.model.ViewStateMovies
 import com.example.movieapp.presentation.model.ViewStateMovies.ErrorStateMovies
-import com.example.movieapp.presentation.model.ViewStateMovies.LoadingStateMovies
 import com.example.movieapp.presentation.model.ViewStateMovies.SuccessStateMovies
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -28,16 +28,16 @@ class MovieViewModel
         private val fetchFavoriteMoviesUseCase: FetchFavoriteMoviesUseCase,
         private val addFavoriteMoviesUseCase: AddFavoriteUseCase,
     ) : ViewModel() {
-        private val _uiState = MutableStateFlow<ViewStateMovies>(ViewStateMovies.LoadingStateMovies)
-        val uiState: StateFlow<ViewStateMovies> = _uiState
+        private val _popularMovies = MutableStateFlow<PagingData<MovieEntity>>(PagingData.empty())
+        val popularMovies: StateFlow<PagingData<MovieEntity>> = _popularMovies
 
         private val _nowPlayingMoviesState =
-            MutableStateFlow<ViewStateMovies>(ViewStateMovies.LoadingStateMovies)
-        val nowPlayingMoviesState: StateFlow<ViewStateMovies> = _nowPlayingMoviesState
+            MutableStateFlow<PagingData<MovieEntity>>(PagingData.empty())
+        val nowPlayingMoviesState: StateFlow<PagingData<MovieEntity>> = _nowPlayingMoviesState
 
         private val _favoriteMoviesState =
-            MutableStateFlow<ViewStateMovies>(ViewStateMovies.LoadingStateMovies)
-        val favoriteMoviesState: StateFlow<ViewStateMovies> = _favoriteMoviesState
+            MutableStateFlow<PagingData<MovieEntity>>(PagingData.empty())
+        val favoriteMoviesState: StateFlow<PagingData<MovieEntity>> = _favoriteMoviesState
 
         private val _addFavoriteMovieState =
             MutableStateFlow<AddFavoriteMovieState>(AddFavoriteMovieState.LoadingState)
@@ -45,18 +45,9 @@ class MovieViewModel
 
         fun fetchPopularMovies() {
             viewModelScope.launch {
-                _uiState.value = LoadingStateMovies
                 fetchPopularMoviesUseCase().collect { resultState ->
-                    when (resultState) {
-                        is ResultState.Error ->
-                            _uiState.update {
-                                ErrorStateMovies(resultState.error)
-                            }
-
-                        is ResultState.Success ->
-                            _uiState.update {
-                                SuccessStateMovies(resultState.data)
-                            }
+                    _popularMovies.update {
+                        resultState
                     }
                 }
             }
@@ -64,18 +55,11 @@ class MovieViewModel
 
         fun fetchNowPlayingMovies() {
             viewModelScope.launch {
-                _nowPlayingMoviesState.value = LoadingStateMovies
-                fetchNowplayingMoviesUseCase().collect { resultState ->
-                    when (resultState) {
-                        is ResultState.Error ->
-                            _nowPlayingMoviesState.update {
-                                ErrorStateMovies(resultState.error)
-                            }
-
-                        is ResultState.Success ->
-                            _nowPlayingMoviesState.update {
-                                SuccessStateMovies(resultState.data)
-                            }
+                viewModelScope.launch {
+                    fetchNowplayingMoviesUseCase().collect { resultState ->
+                        _nowPlayingMoviesState.update {
+                            resultState
+                        }
                     }
                 }
             }
@@ -83,18 +67,11 @@ class MovieViewModel
 
         fun fetchFavoriteMovies() {
             viewModelScope.launch {
-                _favoriteMoviesState.value = LoadingStateMovies
-                fetchFavoriteMoviesUseCase().collect { resultState ->
-                    when (resultState) {
-                        is ResultState.Error ->
-                            _favoriteMoviesState.update {
-                                ErrorStateMovies(resultState.error)
-                            }
-
-                        is ResultState.Success ->
-                            _favoriteMoviesState.update {
-                                SuccessStateMovies(resultState.data)
-                            }
+                viewModelScope.launch {
+                    fetchFavoriteMoviesUseCase().collect { resultState ->
+                        _favoriteMoviesState.update {
+                            resultState
+                        }
                     }
                 }
             }
