@@ -4,19 +4,22 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewbinding.ViewBinding
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.example.domain.domain.model.MovieEntity
 import com.example.movieapp.R
-import com.example.movieapp.databinding.MovieGridBinding
+import com.example.movieapp.databinding.MovieItemGridBinding
+import com.example.movieapp.databinding.MovieItemListBinding
 import com.example.movieapp.presentation.ui.MoviesGridAdapter.ViewHolder
 import com.example.movieapp.presentation.util.Constans
 
 class MoviesGridAdapter(
+    private val isGrid: Boolean = false,
     private val onItemClick: (MovieEntity) -> Unit,
 ) : PagingDataAdapter<MovieEntity, ViewHolder>(TaskDiffCallBack()) {
-    private lateinit var binding: MovieGridBinding
 
     class TaskDiffCallBack : DiffUtil.ItemCallback<MovieEntity>() {
         override fun areItemsTheSame(
@@ -34,9 +37,21 @@ class MoviesGridAdapter(
         parent: ViewGroup,
         viewType: Int,
     ): ViewHolder {
-        binding = MovieGridBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ViewHolder(binding)
+        val typeView =
+            when (viewType) {
+                VIEW_TYPE_GRID ->
+                    MovieItemGridBinding.inflate(
+                        LayoutInflater.from(parent.context),
+                        parent,
+                        false,
+                    )
+
+                else -> MovieItemListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            }
+        return ViewHolder(typeView)
     }
+
+    override fun getItemViewType(position: Int): Int = if (isGrid) VIEW_TYPE_GRID else VIEW_TYPE_LIST
 
     override fun onBindViewHolder(
         holder: ViewHolder,
@@ -47,20 +62,49 @@ class MoviesGridAdapter(
     }
 
     inner class ViewHolder(
-        private var binding: MovieGridBinding,
+        private var binding: ViewBinding,
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(movie: MovieEntity) {
-            binding.root.setOnClickListener {
-                onItemClick(movie)
+            when (binding) {
+                is MovieItemGridBinding -> {
+                    val bind = (binding as MovieItemGridBinding)
+                    bind.apply {
+                        root.setOnClickListener {
+                            onItemClick(movie)
+                        }
+                        titleMovie.text = movie.name
+                        Glide
+                            .with(binding.root.context)
+                            .load("${Constans.PATH_IMAGE}${movie.poster}")
+                            .placeholder(R.drawable.border)
+                            .centerCrop()
+                            .transform(RoundedCorners(30))
+                            .into(movieImage)
+                    }
+                }
+
+                is MovieItemListBinding -> {
+                    val bind = (binding as MovieItemListBinding)
+                    bind.apply {
+                        root.setOnClickListener {
+                            onItemClick(movie)
+                        }
+                        titleMovie.text = movie.name
+                        Glide
+                            .with(binding.root.context)
+                            .load("${Constans.PATH_IMAGE}${movie.poster}")
+                            .placeholder(R.drawable.border)
+                            .centerCrop()
+                            .transform(RoundedCorners(30))
+                            .into(movieImage)
+                    }
+                }
             }
-            binding.titleMovie.text = movie.name
-            Glide
-                .with(binding.root.context)
-                .load("${Constans.PATH_IMAGE}${movie.poster}")
-                .placeholder(R.drawable.border)
-                .centerCrop()
-                .transform(RoundedCorners(30))
-                .into(binding.movieImage)
         }
+    }
+
+    companion object {
+        private const val VIEW_TYPE_GRID = 1
+        private const val VIEW_TYPE_LIST = 2
     }
 }
