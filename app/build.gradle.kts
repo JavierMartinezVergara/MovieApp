@@ -45,9 +45,13 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.material)
     implementation(libs.daggerHiltAndroid)
+    implementation(libs.androidx.preference.ktx)
+    kapt(libs.daggerHiltCompiler)
     implementation(libs.pagination)
     kapt(libs.daggerHiltCompiler)
     implementation(libs.lifecycle)
+    implementation(libs.lifecycleRuntime)
+
     kapt(libs.lifecycleKapt)
 
     implementation(libs.androidx.fragment)

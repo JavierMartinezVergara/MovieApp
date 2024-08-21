@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <PreferenceCategory
+      android:title="General Settings">
+
+    <SwitchPreferenceCompat
+        android:key="layout_mode"
+        android:title="Enable Grid Layout Mode"
+        android:summary="Enable visualize grid as layout mode" />
+
+
+  </PreferenceCategory>
+
+</PreferenceScreen>

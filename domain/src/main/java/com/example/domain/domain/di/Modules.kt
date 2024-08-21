@@ -5,6 +5,7 @@ import com.example.domain.domain.usecase.CreateRefreshTokenUseCase
 import com.example.domain.domain.usecase.FetchFavoriteMoviesUseCase
 import com.example.domain.domain.usecase.FetchNowplayingMoviesUseCase
 import com.example.domain.domain.usecase.FetchPopularMoviesUseCase
+import com.example.domain.domain.usecase.GetPreferencesUseCase
 import com.example.domain.domain.usecase.UseCases
 import com.example.pagination.MoviesDataSourcePagination
 import com.example.repository.AuthRepository
@@ -40,5 +41,6 @@ object Modules {
                     ),
                     movieRepository,
                 ),
+            preferencesLayout = GetPreferencesUseCase(preferencesRepository),
         )
 }

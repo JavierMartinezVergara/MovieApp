@@ -6,4 +6,5 @@ data class UseCases(
     val fetchFavoriteMoviesUseCase: FetchFavoriteMoviesUseCase,
     val refreshTokenUseCase: CreateRefreshTokenUseCase,
     val addFavoriteMoviesUseCase: AddFavoriteUseCase,
+    val preferencesLayout: GetPreferencesUseCase,
 )
