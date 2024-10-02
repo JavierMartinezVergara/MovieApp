@@ -49,6 +49,7 @@ class FavoritesMoviesFragment : Fragment() {
         savedInstanceState: Bundle?,
     ) {
         (activity as MainActivity).binding.navView.visibility = View.VISIBLE
+        (activity as MainActivity).binding.appBar.visibility = View.VISIBLE
         val flowCombined =
             movieViewModel.favoriteMoviesState.cachedIn(lifecycleScope).combine(settingsViewModel.settingsState) { movies, preference ->
                 Pair(movies, preference)

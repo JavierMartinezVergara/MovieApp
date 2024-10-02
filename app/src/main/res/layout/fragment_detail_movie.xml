@@ -1,122 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    android:layout_height="match_parent">
 
-  <androidx.constraintlayout.widget.Guideline
-      android:id="@+id/guideline"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:orientation="horizontal"
-      app:layout_constraintGuide_percent=".6"
-      />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-  <ImageView
-      android:id="@+id/movieImage"
-      android:layout_width="0dp"
-      android:layout_height="0dp"
-      android:scaleType="centerCrop"
-      app:layout_constraintBottom_toTopOf="@+id/guideline"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent"
-      tools:srcCompat="@tools:sample/backgrounds/scenic"
-      />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent=".6" />
 
-  <TextView
-      android:id="@+id/titleMovie"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      app:layout_constraintBottom_toBottomOf="@+id/movieImage"
-      app:layout_constraintEnd_toEndOf="parent"
-      android:textAlignment="gravity"
-      android:textSize="24sp"
-      android:fontFamily="@font/roboto"
-      android:textColor="@color/white"
-      app:layout_constraintStart_toStartOf="@+id/movieImage"
-      app:layout_constraintTop_toTopOf="@+id/guideline"
-      tools:text="Dealpool"
-      />
+        <ImageView
+            android:id="@+id/movieImage"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toTopOf="@+id/guideline"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
-  <TextView
-      android:id="@+id/descriptionMovie"
-      android:layout_width="0dp"
-      android:layout_height="wrap_content"
-      android:layout_marginHorizontal="16dp"
-      android:fontFamily="@font/roboto"
-      android:textAlignment="textStart"
-      android:textColor="@color/white"
-      android:textSize="14sp"
-      android:layout_marginTop="12dp"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="@+id/movieImage"
-      app:layout_constraintTop_toBottomOf="@+id/button"
-      tools:text="@tools:sample/backgrounds/scenic"
-      />
+        <TextView
+            android:id="@+id/titleMovie"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto"
+            android:textAlignment="gravity"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@+id/movieImage"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/movieImage"
+            app:layout_constraintTop_toTopOf="@+id/guideline"
+            tools:text="Dealpool" />
 
-  <com.google.android.material.chip.ChipGroup
-      android:id="@+id/chipGroup"
-      android:layout_width="0dp"
-      android:layout_height="wrap_content"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/titleMovie"
-      android:layout_marginHorizontal="16dp"
-      app:chipSpacingHorizontal="20dp"
-      >
-    <com.google.android.material.chip.Chip
-        android:id="@+id/chip1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/white"
-        android:text="Demo"/>
+        <TextView
+            android:id="@+id/descriptionMovie"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/roboto"
+            android:textAlignment="textStart"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/movieImage"
+            app:layout_constraintTop_toBottomOf="@+id/button"
+            tools:text="@tools:sample/backgrounds/scenic" />
 
-    <com.google.android.material.chip.Chip
-        android:id="@+id/chip2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Demo"/>
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroup"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            app:chipSpacingHorizontal="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titleMovie">
 
-    <com.google.android.material.chip.Chip
-        android:id="@+id/chip3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Demo"/>
+            <com.google.android.material.chip.Chip
+                android:id="@+id/popularity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                app:chipIcon="@drawable/ic_start"
+                app:chipIconTint="@color/white" />
 
-    <com.google.android.material.chip.Chip
-        android:id="@+id/chip4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Demo"/>
+            <com.google.android.material.chip.Chip
+                android:id="@+id/releaseDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:chipIcon="@drawable/ic_calendar"
+                app:chipIconTint="@color/white" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/voteAverage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:chipIcon="@drawable/ic_vote"
+                app:chipIconTint="@color/white" />
 
 
-  </com.google.android.material.chip.ChipGroup>
+        </com.google.android.material.chip.ChipGroup>
 
-  <Button
-      android:id="@+id/button"
-      android:layout_width="0dp"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="16dp"
-      android:text="@string/watch_now"
-      app:layout_constraintEnd_toEndOf="@+id/chipGroup"
-      app:layout_constraintStart_toStartOf="@+id/chipGroup"
-      app:layout_constraintTop_toBottomOf="@+id/chipGroup"
-      />
+        <Button
+            android:id="@+id/button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:drawableLeft="@drawable/ic_play"
+            android:drawableTint="@color/white"
+            android:paddingHorizontal="120dp"
+            android:text="@string/watch_now"
+            app:layout_constraintEnd_toEndOf="@+id/chipGroup"
+            app:layout_constraintStart_toStartOf="@+id/chipGroup"
+            app:layout_constraintTop_toBottomOf="@+id/chipGroup" />
 
-  <com.google.android.material.floatingactionbutton.FloatingActionButton
-      android:id="@+id/addFavorite"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_gravity="end|bottom"
-      android:layout_margin="16dp"
-      app:backgroundTint="@color/red"
-      android:src="@drawable/ic_popular"
-      app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintEnd_toEndOf="parent"
-      />
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/addFavorite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:layout_margin="16dp"
+            android:src="@drawable/ic_popular"
+            app:layout_constraintVertical_bias=".6"
+            app:backgroundTint="@color/red"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/descriptionMovie" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
+

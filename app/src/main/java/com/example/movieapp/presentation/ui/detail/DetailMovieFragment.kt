@@ -28,6 +28,7 @@ import com.google.android.material.snackbar.BaseTransientBottomBar.ANIMATION_MOD
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import java.math.RoundingMode
 
 @AndroidEntryPoint
 class DetailMovieFragment : Fragment() {
@@ -63,14 +64,7 @@ class DetailMovieFragment : Fragment() {
         view: View,
         savedInstanceState: Bundle?,
     ) {
-        binding.movieImage.loadRoundedImage("${Constans.PATH_IMAGE}${movieFragmentArgs.movieArgument.poster}")
-        binding.titleMovie.text = movieFragmentArgs.movieArgument.name
-        binding.descriptionMovie.text = movieFragmentArgs.movieArgument.overview
-        binding.chip1.text = movieFragmentArgs.movieArgument.popularity.toString()
-        binding.addFavorite.setOnClickListener {
-            movieFragmentArgs.movieArgument.id?.let { it1 -> movieViewModel.addFavoriteMovie(it1) }
-        }
-        (activity as MainActivity).binding.navView.visibility = View.GONE
+        setView()
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -87,6 +81,22 @@ class DetailMovieFragment : Fragment() {
                 }
             }
         }
+    }
+
+    private fun setView() {
+        binding.run {
+            movieImage.loadRoundedImage("${Constans.PATH_IMAGE}${movieFragmentArgs.movieArgument.poster}")
+            titleMovie.text = movieFragmentArgs.movieArgument.name
+            descriptionMovie.text = movieFragmentArgs.movieArgument.overview
+            popularity.text = movieFragmentArgs.movieArgument.popularity?.toBigDecimal()?.setScale(1, RoundingMode.CEILING)?.toDouble().toString()
+            releaseDate.text = movieFragmentArgs.movieArgument.releaseDate
+            voteAverage.text = movieFragmentArgs.movieArgument.voteAverage.toString()
+            addFavorite.setOnClickListener {
+                movieFragmentArgs.movieArgument.id?.let { movieId -> movieViewModel.addFavoriteMovie(movieId) }
+            }
+        }
+        (activity as MainActivity).binding.navView.visibility = View.GONE
+        (activity as MainActivity).binding.appBar.visibility = View.GONE
     }
 
     private fun showSnackbar(
