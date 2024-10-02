@@ -12,6 +12,7 @@ androidx-material = "1.12.0"
 androidx-test-junit = "1.1.5"
 appcompat = "1.7.0"
 compose-plugin = "1.6.10"
+firebaseAppdistributionGradle = "5.0.0"
 junit = "4.13.2"
 kotlin = "1.9.22"
 precompose-ver = "1.6.0"
@@ -32,6 +33,8 @@ data_store = "1.1.1"
 coordinator = "1.1.0"
 preferenceKtx = "1.2.1"
 pagination = "3.3.2"
+google_services = "4.4.2"
+firebase_bom = "33.3.0"
 
 
 [libraries]
@@ -88,6 +91,11 @@ androidx-preference-ktx = { group = "androidx.preference", name = "preference-kt
 pagination = { group = "androidx.paging", name = "paging-runtime-ktx", version.ref = "pagination" }
 androidx-paging-common-android = { group = "androidx.paging", name = "paging-common-android", version.ref = "pagination" }
 
+firebaseBom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebase_bom" }
+
+firebase-appdistribution-gradle = { module = "com.google.firebase:firebase-appdistribution-gradle", version.ref = "firebaseAppdistributionGradle" }
+
+
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
@@ -98,3 +106,4 @@ androidDynamicFeature = { id = "com.android.dynamic-feature", version.ref = "agp
 daggerHilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
 navigationSaveArgs = { id = "androidx.navigation.safeargs.kotlin", version.ref = "navigationKtx" }
+googleServices = { id = "com.google.gms.google-services", version.ref = "google_services" }
