@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.kapt)
     alias(libs.plugins.daggerHilt)
+    alias(libs.plugins.googleServices)
     id("androidx.navigation.safeargs")
 }
 
@@ -64,6 +65,8 @@ dependencies {
     implementation(libs.glide)
 
     implementation(libs.androidx.activity)
+
+    implementation(platform(libs.firebaseBom))
     implementation(project(":domain"))
     implementation(project(":data"))
 }

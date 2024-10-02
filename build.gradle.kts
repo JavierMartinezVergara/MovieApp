@@ -8,4 +8,5 @@ plugins {
     alias(libs.plugins.daggerHilt) apply false
     alias(libs.plugins.kapt) apply false
     alias(libs.plugins.navigationSaveArgs) apply false
+    alias(libs.plugins.googleServices) apply false
 }
